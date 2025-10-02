@@ -1,0 +1,10 @@
+# UDP Server/Client Requirements
+# No additional packages needed for basic UDP functionality (socket is built-in)
+
+# Robot Control Requirements (for client only)
+# Note: crisp_py should be installed separately following the repository instructions
+# crisp_py installation: pip install git+https://github.com/utiasDSL/crisp_py.git
+
+numpy>=1.20.0
+scipy>=1.7.0  # Required for rotation matrix conversions in EE position control
+

@@ -1,0 +1,24 @@
+# Commands file for Franka robot control
+# FIRST LINE (non-comment): Specify control mode
+# Options: joint_position, ee_position, joint_velocity, ee_velocity, joint_torque, ee_force
+# 
+# SUBSEQUENT LINES: Command values (see format below for each mode)
+
+# ===== CONTROL MODE =====
+joint_position
+
+# ===== COMMANDS =====
+# For joint_position: 7 values (j1, j2, j3, j4, j5, j6, j7) in radians
+# For ee_position: 3 values (x, y, z) in meters OR 6 values (x, y, z, roll, pitch, yaw)
+
+# Home position
+0.0, -0.785, 0.0, -2.356, 0.0, 1.571, 0.785
+
+# Example position 1
+0.2, -0.785, 0.0, -2.356, 0.0, 1.571, 0.785
+
+# Example position 2
+0.2, -0.5, 0.0, -2.0, 0.0, 1.571, 0.785
+
+# Example position 3
+0.0, -0.5, 0.0, -2.0, 0.0, 1.571, 0.785

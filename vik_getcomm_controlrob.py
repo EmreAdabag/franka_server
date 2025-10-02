@@ -98,18 +98,23 @@ def get_robot_states():
     """Collect current robot states including joint states and end effector pose."""
     # Get joint states (position, velocity, effort/torque)
     joint_positions = robot.joint_values.tolist()
-    joint_velocities = robot.joint_velocities.tolist()
-    joint_efforts = robot.joint_efforts.tolist()
+    joint_velocities = []
+    joint_efforts = []
+    # joint_velocities = robot.joint_velocities.tolist()
+    # joint_efforts = robot.joint_efforts.tolist()
     
     # Get end effector pose (position and orientation)
-    ee_pose = robot.end_effector_pose
-    ee_position = ee_pose[:3, 3].tolist()  # Extract position from transformation matrix
-    ee_orientation = ee_pose[:3, :3].tolist()  # Extract rotation matrix
+    ee_pose = str(robot.end_effector_pose)
+    ee_position = []
+    ee_orientation = []
+    # ee_position = ee_pose[:3, 3].tolist()  # Extract position from transformation matrix
+    # ee_orientation = ee_pose[:3, :3].tolist()  # Extract rotation matrix
     
     return {
         'joint_positions': joint_positions,
         'joint_velocities': joint_velocities,
         'joint_efforts': joint_efforts,
+        'ee_pose': ee_pose,
         'ee_position': ee_position,
         'ee_orientation': ee_orientation
     }
@@ -158,13 +163,13 @@ def execute_ee_position_command(target_ee_pos):
         # Create rotation matrix from roll, pitch, yaw
         from scipy.spatial.transform import Rotation
         rotation = Rotation.from_euler('xyz', [roll, pitch, yaw])
-        rotation_matrix = rotation.as_matrix()
+        # rotation_matrix = rotation.as_matrix()
         
         # Create pose with position and orientation
         current_ee_pose = robot.end_effector_pose.copy()
         target_pose = current_ee_pose
         target_pose.position = np.array([x, y, z])
-        target_pose.orientation = rotation_matrix
+        target_pose.orientation = rotation
     else:
         raise ValueError(f"EE position command must have 3 or 6 values, got {len(target_ee_pos)}")
     
